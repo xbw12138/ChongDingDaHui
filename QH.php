@@ -29,7 +29,7 @@ while(true){
         echo "\n-----------------------------\n";
         echo $ques_desc."\n".$ques_options."\n";
         echo "结果统计:\n";
-        getAnswer($ques_desc,$ques_options);
+        getAnswer($ques_desc,$ques_options,$order);
         echo "-----------------------------\n";
         $order++;
         sleep(10);
@@ -37,14 +37,20 @@ while(true){
         sleep(1);
         echo ".";
     }
-    if($order==13)break;
+    if($order==12)break;
 }
 //获取结果
-function getAnswer($ques_desc,$ques_options){
+function getAnswer($ques_desc,$ques_options,$order){
     $baiduAnswer=simpBaidu(getBaidu(formString($ques_desc)));
+    $result="";
     foreach (formOptions($ques_options) as &$select){
+        $result=$result.$select."(".substr_count($baiduAnswer,$select).") ";
         echo $select."       ".substr_count($baiduAnswer,$select)."\n";
     }
+    $order++;
+    $str=$order.".".$result;
+    //推送服务器自行搭建
+    push("http://ip:9999/push",'{"hello":"'.$str.'","broadcast":true,"condition":""}');
 }
 //删除空格
 function trimall($str){
@@ -101,4 +107,14 @@ function formString($str){
     $res=substr($desc, $index);
     //echo "格式化问题---".$res;
     return $res; //截取.后的内容
+}
+function push($url,$info){
+    $ch = curl_init();
+    $timeout = 5;
+    curl_setopt ($ch, CURLOPT_URL,$url);
+    curl_setopt ($ch, CURLOPT_POST, 1);
+    curl_setopt ($ch, CURLOPT_POSTFIELDS, $info);
+    $result = curl_exec($ch);
+    curl_close ($ch);
+    return $result;
 }
