@@ -21,15 +21,7 @@ phpstorm在控制台输出脚本运行结果
 尴尬的不行
 错了至少……
 尴尬的不行
-![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/FA9B11DE5C730A3F2E0C970E62AF4DE1.jpg)
-![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/5A7C9E7FC4B35CB9B9417A0AE498A701.jpg)
-![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/1BB59FA75EE7ABD831DDF94AD2CE048D.jpg)
-![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/0D72B50F70125102AEEFBF41B89C9639.jpg)
-![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/0D60F649CF758BEC609328C6E1FA6F65.jpg)
-<br>
-这个小米…………
-<br>
-![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/C943E97FCDF9E7FD5442F6F3BE1BF2CA.png)
+![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/QQ20180112-173220@2x.png)
 
 -------
 
