@@ -14,7 +14,7 @@ phpstorm在控制台输出脚本运行结果
 
 直接运行
 在控制台可以看到输出结果
-![]()
+![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/QQ20180112-164550%402x.png)
 
 -------
 
