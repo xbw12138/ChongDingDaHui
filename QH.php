@@ -14,8 +14,8 @@ header('Content-type: application/json; charset=UTF-8');
 //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"correctOption":0,"desc":"2.冯小刚导演的电影《芳华》，改编自谁的作品？","displayOrder":1,"liveId":98,"options":"[\"严歌苓\",\"张爱玲\",\"三毛\"]","questionId":1175,"showTime":1515733542277,"stats":[402096,90527,22795],"status":2,"type":"showAnswer"},"type":"showAnswer"}}';
 //$json=json_decode($dirt, true);
 //$ques_msg=$json['msg'];
-//$T=10;
 while(true){
+    //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"11.动画片《哆啦a梦》中的胖虎是什么星座？","displayOrder":10,"liveId":98,"options":"[\"双子座\",\"白羊座\",\"狮子座\"]","questionId":1184,"showTime":1515734054248,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
     $dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
     $json=json_decode($dirt, true);
     $ques_msg=$json['msg'];
@@ -33,13 +33,17 @@ while(true){
             echo "-----------------------------\n";
             echo $ques_desc."\n".$ques_options."\n";
             echo "结果统计:\n";
-            $baiduAnswer=simpBaidu(getBaidu(formString($ques_desc)));
-            foreach (formOptions($ques_options) as &$select){
-                echo $select."       ".substr_count($baiduAnswer,$select)."\n";
-            }
+            getAnswer($ques_desc,$ques_options);
             echo "-----------------------------\n";
             sleep(10);
         }
+    }
+}
+//获取结果
+function getAnswer($ques_desc,$ques_options){
+    $baiduAnswer=simpBaidu(getBaidu(formString($ques_desc)));
+    foreach (formOptions($ques_options) as &$select){
+        echo $select."       ".substr_count($baiduAnswer,$select)."\n";
     }
 }
 //删除空格
@@ -51,6 +55,7 @@ function trimall($str){
 //格式化options
 function formOptions($str)
 {
+    if($str=="") return ;
     $result = array();
     preg_match_all("/(?:\[)(.*)(?:\])/i",$str, $result);
     preg_match_all("#\"(.*?)\"#i",$result[1][0], $result);
@@ -70,6 +75,7 @@ function getQuestion($url){
 }
 //精简百度搜索内容
 function simpBaidu($string){
+    if($string=="") return ;
     $pattern = '/<div id="content_left">(.+?)<div style="clear:both;height:0;">/is';
     preg_match($pattern, $string, $match);
     return trimall($match[0]);
