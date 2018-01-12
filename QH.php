@@ -10,12 +10,15 @@ header('Content-type: application/json; charset=UTF-8');
 //{"code":0,"msg":"no data"}
 
 //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"11.动画片《哆啦a梦》中的胖虎是什么星座？","displayOrder":10,"liveId":98,"options":"[\"双子座\",\"白羊座\",\"狮子座\"]","questionId":1184,"showTime":1515734054248,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
-$dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
+//$dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
 //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"correctOption":0,"desc":"2.冯小刚导演的电影《芳华》，改编自谁的作品？","displayOrder":1,"liveId":98,"options":"[\"严歌苓\",\"张爱玲\",\"三毛\"]","questionId":1175,"showTime":1515733542277,"stats":[402096,90527,22795],"status":2,"type":"showAnswer"},"type":"showAnswer"}}';
-$json=json_decode($dirt, true);
-$ques_msg=$json['msg'];
+//$json=json_decode($dirt, true);
+//$ques_msg=$json['msg'];
 //$T=10;
 while(true){
+    $dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
+    $json=json_decode($dirt, true);
+    $ques_msg=$json['msg'];
     if($ques_msg=='no data'){
         sleep(1);
         echo "等待问题中……\n";
@@ -35,7 +38,7 @@ while(true){
                 echo $select."       ".substr_count($baiduAnswer,$select)."\n";
             }
             echo "-----------------------------\n";
-            sleep(5);
+            sleep(10);
         }
     }
 }
