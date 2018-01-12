@@ -15,29 +15,29 @@ header('Content-type: application/json; charset=UTF-8');
 //$json=json_decode($dirt, true);
 //$ques_msg=$json['msg'];
 while(true){
-    //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"11.动画片《哆啦a梦》中的胖虎是什么星座？","displayOrder":10,"liveId":98,"options":"[\"双子座\",\"白羊座\",\"狮子座\"]","questionId":1184,"showTime":1515734054248,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
+    //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"11.动画片《哆啦a梦》中的胖虎是什么星座？","displayOrder":1,"liveId":98,"options":"[\"双子座\",\"白羊座\",\"狮子座\"]","questionId":1184,"showTime":1515734054248,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
     $dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
     $json=json_decode($dirt, true);
     $ques_msg=$json['msg'];
+    $order=1;
     if($ques_msg=='no data'){
         sleep(1);
-        echo "等待问题中……\n";
+        echo ".";
+    }else if($json['data']['event']['displayOrder']==$order){
+        $ques_desc=$json['data']['event']['desc'];
+        $ques_options=$json['data']['event']['options'];
+        echo "\n-----------------------------\n";
+        echo $ques_desc."\n".$ques_options."\n";
+        echo "结果统计:\n";
+        getAnswer($ques_desc,$ques_options);
+        echo "-----------------------------\n";
+        $order++;
+        sleep(10);
     }else{
-        $type=$json['data']['type'];
-        if($type=='showAnswer'){
-            sleep(1);
-            echo "等待问题中……\n";
-        }else{
-            $ques_desc=$json['data']['event']['desc'];
-            $ques_options=$json['data']['event']['options'];
-            echo "-----------------------------\n";
-            echo $ques_desc."\n".$ques_options."\n";
-            echo "结果统计:\n";
-            getAnswer($ques_desc,$ques_options);
-            echo "-----------------------------\n";
-            sleep(10);
-        }
+        sleep(1);
+        echo ".";
     }
+    if($order==13)break;
 }
 //获取结果
 function getAnswer($ques_desc,$ques_options){
@@ -53,8 +53,7 @@ function trimall($str){
     return str_replace($oldchar,$newchar,$str);
 }
 //格式化options
-function formOptions($str)
-{
+function formOptions($str){
     if($str=="") return ;
     $result = array();
     preg_match_all("/(?:\[)(.*)(?:\])/i",$str, $result);
