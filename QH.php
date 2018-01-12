@@ -43,6 +43,13 @@ while(true){
 function getAnswer($ques_desc,$ques_options,$order){
     $baiduAnswer=simpBaidu(getBaidu(formString($ques_desc)));
     $result="";
+    //脚本版
+    /*$oo=formOptions($ques_options);
+    for($i=0;$i<sizeof($oo);$i++){
+        $result=$result.$oo[$i]."(".substr_count($baiduAnswer,$oo[$i]).") ";
+        echo $oo[$i]."       ".substr_count($baiduAnswer,$oo[$i])."\n";
+    }*/
+    //编译器版
     foreach (formOptions($ques_options) as &$select){
         $result=$result.$select."(".substr_count($baiduAnswer,$select).") ";
         echo $select."       ".substr_count($baiduAnswer,$select)."\n";
