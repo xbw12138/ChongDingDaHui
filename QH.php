@@ -6,23 +6,14 @@
  * Time: 下午2:03
  */
 header('Content-type: application/json; charset=UTF-8');
-//http://htpmsg.jiecaojingxuan.com/msg/current
-//{"code":0,"msg":"no data"}
-
-//$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"11.动画片《哆啦a梦》中的胖虎是什么星座？","displayOrder":10,"liveId":98,"options":"[\"双子座\",\"白羊座\",\"狮子座\"]","questionId":1184,"showTime":1515734054248,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
-//$dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
-//$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"correctOption":0,"desc":"2.冯小刚导演的电影《芳华》，改编自谁的作品？","displayOrder":1,"liveId":98,"options":"[\"严歌苓\",\"张爱玲\",\"三毛\"]","questionId":1175,"showTime":1515733542277,"stats":[402096,90527,22795],"status":2,"type":"showAnswer"},"type":"showAnswer"}}';
-//$json=json_decode($dirt, true);
-//$ques_msg=$json['msg'];
-
+//https://www.google.com/search?q=电视剧《乡村爱情》中%2C角色“谢大脚”在剧中的本名+谢红
 while(true){
-    $dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"11.以下哪座城市是黑夜最短的“不夜城”？","displayOrder":1,"liveId":98,"options":"[\"上海\",\"漠河\",\"南京\"]","questionId":1184,"showTime":1515734054248,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
-    //$dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
+    //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"10.哪个品牌目前不生产跑车?  ","displayOrder":9,"liveId":98,"options":"[\"五菱宏光\",\"法拉利\",\"兰博基尼\"]","questionId":1183,"showTime":1515733995489,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
+    $dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
     $json=json_decode($dirt, true);
     $ques_msg=$json['msg'];
-    if($ques_msg=='no data'){
-        sleep(1);
-        echo ".";
+    if($ques_msg=='no data '){
+        sleep(1);echo ".";
     }else if($ques_msg=='成功'||$json['data']['type']=='showQuestion'){
         $order=$json['data']['event']['displayOrder'];
         $ques_desc=$json['data']['event']['desc'];
@@ -38,11 +29,13 @@ while(true){
         echo "\n-----------------------------\n";
         $pre=getDescOptAnswer($ques_desc,$ques_options,$order);//精确结果
         echo "\n-----------------------------\n";
-        $finalresult=$rr." 推荐答案：".$pre;
+        $finalresult=$rr."推荐答案:".$pre;
         echo $finalresult."\n";
-        push("http://ip:9999/push",'{"hello":"'.$finalresult.'","broadcast":true,"condition":""}');
+        push("http://182.254.146.68:9999/push",'{"hello":"'.$finalresult.'","broadcast":true,"condition":""}');
         sleep(10);
         if($order==11)break;
+    }else{
+        sleep(1);echo "。";
     }
 }
 //根据问题描述加选项搜索结果数量来返回答案
@@ -60,15 +53,6 @@ function getDescOptAnswer($ques_desc,$ques_options,$order){
         }
         $result=$result.$oo[$i]."(".$count.") ";
     }
-    /*foreach ($ques_options as &$select){
-        $count=getBaiduCount($ques_desc,$select);
-        if($count>$max){
-            $max=$count;
-            $answer=$select;
-        }
-        $result=$result.$select."(".$count.") ";
-        //echo $select."(".getBaiduCount($ques_desc,$select).") \n";
-    }*/
     $order++;
     $str=$order.".".$result;
     echo "百度结果统计：".$str;
@@ -117,11 +101,6 @@ function getAnswer($ques_desc,$ques_options,$order){
         $result=$result.$oo[$i]."(".substr_count($baiduAnswer,$oo[$i]).") ";
         //echo $oo[$i]."(".substr_count($baiduAnswer,$oo[$i]).")\n";
     }
-    //编译器版
-    /*foreach ($ques_options as &$select){
-        $result=$result.$select."(".substr_count($baiduAnswer,$select).") ";
-        //echo $select."(".substr_count($baiduAnswer,$select).")\n";
-    }*/
     $order++;
     $str=$order.".".$result;
     echo "关键词统计：".$str;
@@ -176,13 +155,24 @@ function getBaidu($desc){
     return $content;
 }
 //格式化问题内容
-function formString($str){
+/*function formString($str){
     $desc=$str;
     $desc=chop($desc,"？");//去掉？
     $desc=chop($desc,"?");//去掉?
+    $desc=chop($desc," ");//去掉空格
     $index=strpos($desc,".")+1;//获取.的位置
     $res=substr($desc, $index);
     //echo "格式化问题---".$res;
+    return $res; //截取.后的内容
+}*/
+//格式化问题内容
+function formString($str){
+    $desc=$str;
+    $desc=str_replace('？','',$desc); 
+    $desc=str_replace('?','',$desc); 
+    $desc=str_replace(' ','',$desc);
+    $index=strpos($desc,".")+1;//获取.的位置
+    $res=substr($desc, $index);
     return $res; //截取.后的内容
 }
 function push($url,$info){

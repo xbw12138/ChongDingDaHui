@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title>大会推送</title>
+    <link rel="stylesheet" href="asset/bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="asset/bootstrap/css/bootstrap-theme.css" type="text/css">
+    <link rel="stylesheet" href="asset/bootstrap/css/bootstrap.css" type="text/css">
+</head>
+<body>
+    <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">大会推送</h3>
+            </div>
+            <div class="panel-body">
+                    <div class="col-lg-6">
+                            <div class="input-group">
+                              <input type="text" id="content" class="form-control" placeholder="在此输入推送内容">
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="push">发送</button>
+                              </span>
+                            </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+            </div>
+            <div class="panel-footer">©️copyright xbw power by Mpush</div>
+    </div>
+
+</body>
+<script src="asset/js/jQuery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        function push(){
+            $.ajax({
+                type:"POST",
+                url:"push.php",
+                dataType:"json",
+                data:{
+                    content: $("#content").val(),
+                },
+                success:function(data){
+                    alert(data);
+                },
+                error:function(jqXHR){
+                    alert("推送成功");
+                }
+            });
+        }
+        $("#push").click(function(){
+            push();
+        });
+    })
+</script>
+</html>
