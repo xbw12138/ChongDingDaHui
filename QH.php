@@ -16,7 +16,7 @@ header('Content-type: application/json; charset=UTF-8');
 //$ques_msg=$json['msg'];
 $order=1;
 while(true){
-    //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"11.动画片《哆啦a梦》中的胖虎是什么星座？","displayOrder":1,"liveId":98,"options":"[\"双子座\",\"白羊座\",\"狮子座\"]","questionId":1184,"showTime":1515734054248,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
+    //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"2.动画片《哆啦a梦》中的胖虎是什么星座？","displayOrder":1,"liveId":98,"options":"[\"双子座\",\"白羊座\",\"狮子座\"]","questionId":1184,"showTime":1515734054248,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
     $dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
     $json=json_decode($dirt, true);
     $ques_msg=$json['msg'];
@@ -37,9 +37,11 @@ while(true){
         echo "\n-----------------------------\n";
         $pre=getDescOptAnswer($ques_desc,$ques_options,$order);//精确结果
         echo "\n-----------------------------\n";
-        $finalresult=$rr." 推荐答案：".$pre;
-        echo $finalresult;
-        //push("http://ip:9999/push",'{"hello":"'.$finalresult.'","broadcast":true,"condition":""}');
+        //$finalresult=$rr."推荐答案：".$pre;
+        $finalresult="推荐答案：".$pre;
+        echo $finalresult."\n";
+        push("http://ip:9999/push",'{"hello":"'.$finalresult.'","broadcast":true,"condition":""}');
+        echo "\n-----------------------------\n";
         $order++;
         sleep(10);
     }else{
@@ -54,7 +56,7 @@ function getDescOptAnswer($ques_desc,$ques_options,$order){
     $answer="";
     $max=0;
     //脚本版
-    /*$oo=$ques_options;
+    $oo=$ques_options;
     for($i=0;$i<sizeof($oo);$i++){
         $count=getBaiduCount($ques_desc,$oo[$i]);
         if($count>$max){
@@ -62,8 +64,8 @@ function getDescOptAnswer($ques_desc,$ques_options,$order){
             $answer=$oo[$i];
         }
         $result=$result.$oo[$i]."(".$count.") ";
-    }*/
-    foreach ($ques_options as &$select){
+    }
+    /*foreach ($ques_options as &$select){
         $count=getBaiduCount($ques_desc,$select);
         if($count>$max){
             $max=$count;
@@ -71,12 +73,11 @@ function getDescOptAnswer($ques_desc,$ques_options,$order){
         }
         $result=$result.$select."(".$count.") ";
         //echo $select."(".getBaiduCount($ques_desc,$select).") \n";
-    }
+    }*/
     $order++;
     $str=$order.".".$result;
     echo "百度结果统计：".$str;
     return $answer;
-    //push("http://ip:9999/push",'{"hello":"'.$str.'","broadcast":true,"condition":""}');
 }
 //获取百度搜索结果个数
 function getBaiduCount($ques_desc,$ques_option){//问题加单个选项
@@ -116,21 +117,20 @@ function getAnswer($ques_desc,$ques_options,$order){
     if($baiduAnswer=="")return ;
     $result="";
     //脚本版
-    /*$oo=$ques_options;
+    $oo=$ques_options;
     for($i=0;$i<sizeof($oo);$i++){
         $result=$result.$oo[$i]."(".substr_count($baiduAnswer,$oo[$i]).") ";
         //echo $oo[$i]."(".substr_count($baiduAnswer,$oo[$i]).")\n";
-    }*/
+    }
     //编译器版
-    foreach ($ques_options as &$select){
+    /*foreach ($ques_options as &$select){
         $result=$result.$select."(".substr_count($baiduAnswer,$select).") ";
         //echo $select."(".substr_count($baiduAnswer,$select).")\n";
-    }
+    }*/
     $order++;
     $str=$order.".".$result;
     echo "关键词统计：".$str;
     return $str;
-    //push("http://ip:9999/push",'{"hello":"'.$str.'","broadcast":true,"condition":""}');
 }
 //删除空格
 function trimall($str){
