@@ -6,13 +6,15 @@
  * Time: 下午2:03
  */
 header('Content-type: application/json; charset=UTF-8');
-//https://www.google.com/search?q=电视剧《乡村爱情》中%2C角色“谢大脚”在剧中的本名+谢红
+$token='';//用户token
+$api='http://msg.api.chongdingdahui.com/msg/current';//官方api
+$puship='';//推动服务器
 while(true){
     //$dirt='{"code":0,"msg":"成功","data":{"event":{"answerTime":10,"desc":"10.哪个品牌目前不生产跑车?  ","displayOrder":9,"liveId":98,"options":"[\"五菱宏光\",\"法拉利\",\"兰博基尼\"]","questionId":1183,"showTime":1515733995489,"status":0,"type":"showQuestion"},"type":"showQuestion"}}';
-    $dirt=getQuestion('http://htpmsg.jiecaojingxuan.com/msg/current');
+    $dirt=getQuestion($api,$token);
     $json=json_decode($dirt, true);
     $ques_msg=$json['msg'];
-    if($ques_msg=='no data '){
+    if($ques_msg=='no data'){
         sleep(1);echo ".";
     }else if($ques_msg=='成功'||$json['data']['type']=='showQuestion'){
         $order=$json['data']['event']['displayOrder'];
@@ -31,7 +33,7 @@ while(true){
         echo "\n-----------------------------\n";
         $finalresult=$rr."推荐答案:".$pre;
         echo $finalresult."\n";
-        push("http://182.254.146.68:9999/push",'{"hello":"'.$finalresult.'","broadcast":true,"condition":""}');
+        push($puship,'{"hello":"'.$finalresult.'","broadcast":true,"condition":""}');
         sleep(10);
         if($order==11)break;
     }else{
@@ -121,11 +123,15 @@ function formOptions($str){
     return $result[1];
 }
 //获取问题
-function getQuestion($url){
+function getQuestion($url,$token){
+    $headers = array();
+    $headers[] ='X-Live-Session-Token: '.$token;
+    $headers[] = 'Content-Type: application/json';
     $ch = curl_init();
     $timeout = 5;
     curl_setopt ($ch, CURLOPT_URL,$url);
     curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt ($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt ($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36');
     curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
     $html = curl_exec($ch);

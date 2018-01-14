@@ -45,6 +45,24 @@
 
 -------
 
+### 第五个版本（QH.php）
+不好意思，原地复活了<br>
+官方修改api很有趣,各位大佬测试了一天终于成功了<br>
+
+新的api http://msg.api.chongdingdahui.com/msg/current <br>
+现在需要增加请求头 X-Live-Session-Token <br>
+
+如果不加 获得结果是 `{"code":0,"msg":"no data "}`
+
+加了请求头是 `{"code":0,"msg":"no data"}`
+
+也就是13号晚7点发生的 no data后多了空格的事件……
+
+15日中午13点卷土重来……
+
+-------
+
+
 ## 测试记录
 
 #### 1月12日21点实测
