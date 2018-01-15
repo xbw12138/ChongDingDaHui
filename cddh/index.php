@@ -278,27 +278,33 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 </style>
 
 <style> @media print{ .hljs{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
-<h1 id="toc_0">大会辅助安卓端使用说明</h1>
+<h1 id="toc_0">答题辅助安卓端使用说明</h1>
+<h1 id="toc_0">基于搜狗搜索</h1>
 
-<p>大会开始提前打开辅助<br/>
+<p>答题开始提前打开辅助<br/>
 保持辅助后台运行</p>
 
-<p>大会开始前系统会发出推送通知<br/>
+<p>答题开始前系统会发出推送通知<br/>
 若收不到推送通知请重新打开辅助</p>
+
+<p>请在设置->答题辅助->通知<br/>
+->横幅显示 或者 悬浮窗等功能开启</p>
+
+<p>保证像QQ通知一样显示在屏幕上方<br/>
+不同机型不一样，若不能横幅显示请微博反馈</p>
 
 <p>答案将会以通知的形式显示出来</p>
 
 <p>至于答案的准确性还在优化<br/>
 答案形式 <br/>
-<code>2.上海(2) 漠河(18) 南京(0)  推荐答案：漠河</code><br/>
-括号为选项权重，权重大的几率越大<br/>
-请根据推送答案自行斟酌</p>
+<code>《冲顶大会》 推荐答案：xxxx</code><br/>
+不保证答案完全正确</p>
 
 <h2 id="toc_1">最新版本（请及时更新）</h2>
 
-<p>最后更新于  2018-01-13 16:45:54</p>
+<p>最后更新于  2018-01-15 18:20:49</p>
 
-<p><a href="https://fir.im/r3v5">版本更新</a></p>
+<p><a href="https://fir.im/r3v5">版本更新(不更新问题不大)</a></p>
 
 <h2 id="toc_2">问题反馈</h2>
 
