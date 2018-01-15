@@ -62,6 +62,22 @@
 
 -------
 
+### 第六个版本（sougou.php）暂未公布
+
+支持 <br>
+#####西瓜视频 <br>
+#####芝士超人 <br>
+#####冲顶大会 <br>
+#####花椒直播 <br>
+
+整合Mpush推送服务<br>
+将结果直接推送到手机<br>
+下载大会辅助APK，只有安卓版
+[安卓端下载](https://fir.im/r3v5)
+![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/Screenshot_20180115-172617.png)
+![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/Screenshot_20180115-181433.png)
+
+-------
 
 ## 测试记录
 
