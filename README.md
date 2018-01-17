@@ -1,4 +1,4 @@
-# 冲顶大会辅助答题（PHP版）
+# 辅助答题（PHP版）
 
 
 ## 版本记录
@@ -78,6 +78,17 @@
 ![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/Screenshot_20180115-181433.png)
 
 -------
+
+### 第七个版本（android）源码暂未公布
+接入短信接码平台，以实现领取复活卡
+下载答题辅助APK，只有安卓版
+[安卓端下载](https://fir.im/r3v5)
+![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/E3EAA463FD98DBB133D19A4B03B0D9C9.jpg)
+![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/54B9D458EF582861094C517FFF575DE3.jpg)
+![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/BE46E06D33ABAB0D08677A08DA5D6004.jpg)
+
+-------
+
 
 ## 测试记录
 
