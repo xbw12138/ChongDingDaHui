@@ -300,6 +300,29 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 <code>《冲顶大会》 推荐答案：xxxx</code><br/>
 不保证答案完全正确</p>
 
+<h2 id="toc_1">复活卡获取(测试,请随意打赏,成本每条/0.1¥)</h2>
+
+<p><a href="http://ecfun.cc/cddh/message.php">短信验证平台</a></p>
+
+<h2 id="toc_3">随意打赏或者复制支付宝红包口令</h2>
+
+<p><strong>使用了短信验证的同学，我们这个短信验证是需要成本的，<br/>
+你这样无限刷我们也撑不住，谢谢各位</strong></p>
+
+<hr/>
+
+<p>支付宝红包口令</p>
+
+<pre><code>`ukZwaw75kk`
+</code></pre>
+
+<hr/>
+
+<p>支付宝收钱码<br/>
+<img src="http://img.ecfun.cc/15161551335a5eb0fdcb5ee287749" alt=""/></p>
+
+<hr/>
+
 <h2 id="toc_1">最新版本（请及时更新）</h2>
 
 <p>最后更新于  2018-01-15 18:20:49</p>
