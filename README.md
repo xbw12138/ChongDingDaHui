@@ -95,7 +95,7 @@
 答题手通过悬浮窗123选项发送
 下载答题辅助APK，只有安卓版
 [安卓端下载](https://fir.im/r3v5)
-![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/Screenshot_20180120-152220.png)
+![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/Screenshot_20180120-153638.png)
 
 ## 测试记录
 
