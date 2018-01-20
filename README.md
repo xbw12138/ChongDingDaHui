@@ -89,6 +89,13 @@
 
 -------
 
+### 第七个版本（android）源码暂未公布
+增加答题手功能，需要申请答题手权限，
+选拔优良答题手进行辅助答题，避免AI的错误，
+答题手通过悬浮窗123选项发送
+下载答题辅助APK，只有安卓版
+[安卓端下载](https://fir.im/r3v5)
+![](https://github.com/xbw12138/ChongDingDaHui/blob/master/image/Screenshot_20180120-152220.png)
 
 ## 测试记录
 
